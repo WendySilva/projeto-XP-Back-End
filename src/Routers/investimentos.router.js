@@ -1,4 +1,5 @@
 const express = require('express');
+// const middlewareInvetimentos = require('../middlewares/investimentos.Joi');
 
 const investimentosRouter = express.Router();
 
