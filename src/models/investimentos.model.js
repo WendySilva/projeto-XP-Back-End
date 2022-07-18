@@ -6,3 +6,5 @@ const newBuy = ({ codClient, codAtivo, qtdeAtivo }) => {
 
   return response;
 }
+
+module.exports = { newBuy };
