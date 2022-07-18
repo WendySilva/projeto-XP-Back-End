@@ -1,9 +1,10 @@
 const modelInvestimento = require ('../models/investimentos.model');
 
-const newBuy = (buy) => {
-  const response = modelInvestimento.newBuy();
-
-  return response;
+const newBuy = async (buy) => {
+  const [response] = await modelInvestimento.newBuy(buy);
+  if(response.affectedRows) response.affectedRows;
 };
 
-module.exports = { newBuy };
+module.exports = { 
+  newBuy,
+};

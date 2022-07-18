@@ -1,9 +1,11 @@
-const serviceInvestimento = require ('../services/investimentos.service');
+const serviceInvestimentos = require('../services/investimentos.service');
 
 const newBuy = async (req, res, next) => {
-  const response = await serviceInvestimento.newBuy(req.body);
-
-  return res.status(201).json(response);
+  console.log('CONTROLLER')
+  const response = await serviceInvestimentos.newBuy(req.body);
+  console.log('aqui', response);
+  if(response) res.status(201).end();
+  next();
 };
 
 module.exports = {
