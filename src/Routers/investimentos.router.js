@@ -1,7 +1,7 @@
-import express from 'express';
+const express = require('express');
 
 const investimentosRouter = express.Router();
 
 investimentosRouter.post('/comprar', );
 
-export default investimentosRouter;
+module.exports = investimentosRouter;
