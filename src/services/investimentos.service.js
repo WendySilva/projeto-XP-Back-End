@@ -5,3 +5,5 @@ const newBuy = (buy) => {
 
   return response;
 };
+
+module.exports = { newBuy };
