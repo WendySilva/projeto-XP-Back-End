@@ -1,9 +1,9 @@
 const express = require('express');
-// const middlewareInvetimentos = require('../middlewares/investimentos.Joi');
+const middlewareInvetimentos = require('../middlewares/investimentos.Joi');
 const investimentoController = require('../controllers/investimentos.controller');
 
 const investimentosRouter = express.Router();
 
-investimentosRouter.post('/comprar', investimentoController.newBuy);
+investimentosRouter.post('/comprar', middlewareInvetimentos, investimentoController.newBuy);
 
 module.exports = investimentosRouter;

@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 
-const port = 3001 // process.env.PORT;
+const port = process.env.PORT;
 
 app.use('/investimentos', investimentosRouter);
 
