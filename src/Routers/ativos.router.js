@@ -3,6 +3,6 @@ const ativosController = require('../controllers/ativos.controller');
 
 const ativosRouter = express.Router();
 
-ativosRouter.getByCode('/:id', ativosController);
+ativosRouter.get('/:id', ativosController.getByCode);
 
 module.exports = ativosRouter;
