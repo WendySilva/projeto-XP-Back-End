@@ -1,11 +1,10 @@
 const modelAtivos = require('../models/ativos.model');
 
-const getByCode = async (code) => {
-  console.log(code);
-  if (+code < 1000) {
-    return await modelAtivos.getAssetsByCode(code);
+const getByCode = async ({ id }) => {
+  if (+id > 1000) {
+    return await modelAtivos.getAssetsByCode(id);
   }
-  return await modelAtivos.getClientByCode(code);
+  return await modelAtivos.getClientByCode(id);
 }
 
 module.exports = { getByCode }
