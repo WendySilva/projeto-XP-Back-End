@@ -2,7 +2,6 @@ const serviceConta = require('../services/conta.service');
 
 const deposito = async (req, res, next) => {
   const response = await serviceConta.deposito(req.body);
-  console.log(response);
   if (response === 'cliente não existe') {
     return next({ status: 400 , message: 'Código do cliente não encontrado'})
   }

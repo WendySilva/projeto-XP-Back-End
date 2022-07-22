@@ -1,9 +1,10 @@
 const Joi = require('joi');
 
 const schema = Joi.object({
-  codCliente: Joi.number().max(999).required().messages({
+  codCliente: Joi.number().min(1).max(999).required().messages({
     'any.required': 'Informe o código do cliente',
     'number.max': 'Código do Cliente inválido',
+    'number.min': 'Código do Cliente inválido'
   }),
   valor: Joi.number().min(1).required().messages({
     'any.required': 'Informe o valor do depósito',
