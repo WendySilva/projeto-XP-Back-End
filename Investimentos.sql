@@ -3,14 +3,14 @@ CREATE DATABASE Investimentos;
 USE Investimentos;
 
 CREATE TABLE Investimentos.Clients (
-  codClient INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  codClient INT AUTO_INCREMENT PRIMARY KEY,
   saldo DECIMAL(30,2) NOT NULL
 );
 
 ALTER TABLE Investimentos.Clients AUTO_INCREMENT=1;
 
 CREATE TABLE Investimentos.Investiment (
-  codAtivo INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  codAtivo INT AUTO_INCREMENT PRIMARY KEY,
   qtdeAtivo INT NOT NULL,
   valor DECIMAL(10,2) NOT NULL
 );
@@ -26,9 +26,10 @@ CREATE TABLE Investimentos.ClientInvestiment (
 );
 
 CREATE TABLE Investimentos.Movement (
-  codMoviment INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  codMoviment INT AUTO_INCREMENT PRIMARY KEY,
   codClient INT NOT NULL,
   valor DECIMAL(30,2) NOT NULL,
+  tipo VARCHAR(1) NOT NULL,
   FOREIGN KEY (codClient) REFERENCES Investimentos.Clients (codClient)
 );
 
@@ -52,9 +53,9 @@ INSERT INTO Investimentos.ClientInvestiment (codClient, codAtivo, qtdeAtivoClien
   (2, 1001, 1),
   (3, 1000, 4);
 
-INSERT INTO Investimentos.movement (codClient, valor) VALUES 
-  (1, 10.50),
-  (1, 20.60),
-  (2, 30.30),
-  (2, 15.00),
-  (3, 25.00);
+INSERT INTO Investimentos.movement (codClient, valor, tipo) VALUES 
+  (1, 10.50, "+"),
+  (1, 20.60, "-"),
+  (2, 30.30, "+"),
+  (2, 15.00, "+"),
+  (3, 25.00, "-");
