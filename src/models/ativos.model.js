@@ -16,4 +16,33 @@ const getClientByCode = async (id) => {
   return response;
 }
 
-module.exports = { getAssetsByCode, getClientByCode };
+const atualizandoSaldo = async ({ codCliente, valor }, tipo) => {  
+  const [response] = await getClientByCode(codCliente);
+  const { saldo } = response[0];
+
+  if (tipo === '-') {
+
+   if(+saldo >= +valor) {
+    const saldoAtual = +saldo - +valor;
+    const query = 'UPDATE Clients SET saldo = ? WHERE codClient = ?';
+    await connection.execute(query, [saldoAtual, codCliente]);
+    return saldoAtual;
+   };
+    return undefined;
+  }
+
+  const saldoAtual = +saldo + +valor;
+  const query = 'UPDATE Clients SET saldo = ? WHERE codClient = ?';
+  await connection.execute(query, [saldoAtual, codCliente]);
+
+  return saldoAtual;
+};
+
+const todosClientes = async () => {
+  const query = `SELECT * FROM Clients`;
+  const response = await connection.execute(query);
+
+  return response;
+}
+
+module.exports = { getAssetsByCode, getClientByCode, atualizandoSaldo, todosClientes };
