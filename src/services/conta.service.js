@@ -1,11 +1,6 @@
 const contaModel = require('../models/conta.model');
-const ativoModel = require('../models/ativos.model');
+const { clienteExiste } = require('../util/ClienteExitente');
 
-const clienteExiste = async (codCliente) => {
-  const [clientes] = await ativoModel.todosClientes();
-  const cliente = clientes.some((cliente) => cliente.codClient === codCliente);
-  return cliente;
-}
 const deposito = async (d) => {
   if(await clienteExiste(d.codCliente)) {
     const saldoAtual = await ativoModel.atualizandoSaldo(d, '+');
