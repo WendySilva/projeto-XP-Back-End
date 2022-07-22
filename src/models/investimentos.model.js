@@ -1,11 +1,32 @@
+const { atualizandoSaldo } = require('./ativos.model');
 const connection = require('./connection');
 
-const newBuy = async ({ codCliente, codAtivo, qtdeAtivo }) => {
+const buscadoPeloId = async (id) => {
+  const query = 'SELECT qtdeAtivo, valor FROM Investiment WHERE codAtivo = ?';
+  const [investimento] = await connection.execute(query, [id]);
 
-  const query = 'INSERT INTO ClientInvestiment (codClient, codAtivo, qtdeAtivoCliente) VALUES (?, ?, ?)';
-  const tabelaClientIvest = await connection.execute(query, [codCliente, codAtivo, qtdeAtivo]);
-
-  return response;
+  return investimento;
 }
 
-module.exports = { newBuy };
+const novaCompra = async ({ codCliente, codAtivo, qtdeAtivo }) => {
+
+  const queryClienteInvest = 'INSERT INTO ClientInvestiment (codClient, codAtivo, qtdeAtivoCliente) VALUES (?, ?, ?)';
+  const novoInvestimento = await connection.execute(queryClienteInvest, [codCliente, codAtivo, qtdeAtivo]);
+
+  if(novoInvestimento) {
+    const [ investInicial ] = await buscadoPeloId(codAtivo);
+    const qtdeAtual = investInicial.qtdeAtivo - qtdeAtivo;
+    const queryInvest = 'UPDATE Investiment SET qtdeAtivo = ? WHERE codAtivo = ?';
+    const [qntInvest] = await connection.execute(queryInvest, [qtdeAtual, codAtivo]);
+    
+    if(qntInvest.affectedRows) {
+      const valor = +investInicial.valor * +qtdeAtivo;
+      const saldo = await atualizandoSaldo({ codCliente, valor }, '-');
+      return saldo
+    }
+  }
+
+  return undefined;
+}
+
+module.exports = { novaCompra, buscadoPeloId };

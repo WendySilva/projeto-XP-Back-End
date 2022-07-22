@@ -21,11 +21,13 @@ const atualizandoSaldo = async ({ codCliente, valor }, tipo) => {
   const { saldo } = response[0];
 
   if (tipo === '-') {
-
+    
    if(+saldo >= +valor) {
+   
     const saldoAtual = +saldo - +valor;
     const query = 'UPDATE Clients SET saldo = ? WHERE codClient = ?';
-    await connection.execute(query, [saldoAtual, codCliente]);
+    await connection.execute(query, [saldoAtual.toFixed(2), codCliente]);
+
     return saldoAtual;
    };
     return undefined;
