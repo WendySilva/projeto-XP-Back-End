@@ -7,12 +7,10 @@ const deposito = async (req, res, next) => {
 
 const saque = async (req, res, next) => {
   const response = await serviceConta.saque(req.body);
-  console.log(response);
-  if (!response) {
-    console.log('SEM SALDO');
+  if (response === undefined) {
     return next({ status: 400 , message: 'Não há saldo suficiente, tente outro valor'})
   }
-  return res.status(201).json({ message: `Seu saldo atual é de ${response}`});
+  return res.status(201).json({ message: `Seu saldo atual é de R$${response}`});
 };
 
 module.exports = { deposito, saque }

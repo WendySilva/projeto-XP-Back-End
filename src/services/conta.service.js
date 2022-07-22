@@ -8,12 +8,14 @@ const deposito = async (d) => {
 
 const saque = async (s) => {
   const temSaldo = await contaModel.atualizandoSaldo(s, '-');
-  if (!temSaldo) {
-    return undefined;
-  }
-  const [response] = await contaModel.deposito(s);
 
-  if (response.affectedRows) return temSaldo;
+  if(temSaldo !== undefined) {
+    const [response] = await contaModel.saque(s);
+      if (response.affectedRows === 1) {
+        return temSaldo;
+      }
+  }
+  return undefined;
 };
 
 module.exports = { saque, deposito };

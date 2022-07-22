@@ -1,4 +1,5 @@
 const express = require('express');
+require('express-async-errors');
 const contaController = require('../controllers/conta.controller');
 const middlewareConta = require('../middlewares/conta.Joi');
 
