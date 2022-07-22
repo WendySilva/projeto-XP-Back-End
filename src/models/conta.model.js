@@ -15,26 +15,4 @@ const saque = async ({ codCliente, valor }) => {
   return response;
 }
 
-// const atualizandoSaldo = async ({ codCliente, valor }, tipo) => {  
-//   const [response] = await getClientByCode(codCliente);
-//   const { saldo } = response[0];
-
-//   if (tipo === '-') {
-
-//    if(+saldo >= +valor) {
-//     const saldoAtual = +saldo - +valor;
-//     const query = 'UPDATE Clients SET saldo = ? WHERE codClient = ?';
-//     await connection.execute(query, [saldoAtual, codCliente]);
-//     return saldoAtual;
-//    };
-//     return undefined;
-//   }
-
-//   const saldoAtual = +saldo + +valor;
-//   const query = 'UPDATE Clients SET saldo = ? WHERE codClient = ?';
-//   await connection.execute(query, [saldoAtual, codCliente]);
-
-//   return saldoAtual;
-// };
-
 module.exports = { deposito, saque };
