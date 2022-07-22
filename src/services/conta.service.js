@@ -1,20 +1,19 @@
 const contaModel = require('../models/conta.model');
 
 const deposito = async (d) => {
-  contaModel.atualizandoSaldo(d, '+');
+  const saldoAtual = await contaModel.atualizandoSaldo(d, '+');
   const [response] = await contaModel.deposito(d);
-
-  return response;
+  if (response.affectedRows) return saldoAtual;
 };
 
-const saque = (s) => {
-  const temSaldo = contaModel.atualizandoSaldo(s, '-');
+const saque = async (s) => {
+  const temSaldo = await contaModel.atualizandoSaldo(s, '-');
   if (!temSaldo) {
-    return false;
+    return undefined;
   }
   const [response] = await contaModel.deposito(s);
 
-  return response;
+  if (response.affectedRows) return temSaldo;
 };
 
 module.exports = { saque, deposito };
