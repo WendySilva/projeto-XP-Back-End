@@ -8,5 +8,6 @@ const contaRouter = express.Router();
 
 contaRouter.post('/deposito', middlewareConta, middlewareCodCliente, contaController.deposito);
 contaRouter.post('/saque', middlewareConta, middlewareCodCliente, contaController.saque);
+contaRouter.get('/:id', contaController.saldoCliente)
 
 module.exports = contaRouter;

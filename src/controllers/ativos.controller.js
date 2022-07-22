@@ -1,11 +1,12 @@
 const ativosService = require('../services/ativos.service');
 
-const getByCode = async (req, res, next) => {
-  const [response] = await ativosService.getByCode(req.params);
-  if(response) return res.status(200).json(response);
-  return next({ status: 400 , message: 'Não há saldo suficiente, tente ouro valor'});
+const buscadoPeloId = async (req, res, next) => {
+  const [response] = await ativosService.buscadoPeloId(req.params);
+  console.log(response);
+  if(response.length) return res.status(200).json(response);
+  return next({ status: 400 , message: 'Código inválido'});
 };
 
 module.exports = {
-  getByCode,
+  buscadoPeloId,
 }
