@@ -7,6 +7,8 @@ const buscadoPeloId = async ({ id }) => {
   return await modelAtivos.clientesPorId(id);
 }
 
+const buscadoTodosAtivos = async() => {
+  return await modelAtivos.buscadoTodosAtivos();
+}
 
-
-module.exports = { buscadoPeloId }
+module.exports = { buscadoPeloId, buscadoTodosAtivos }
