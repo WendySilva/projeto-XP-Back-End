@@ -24,11 +24,10 @@ const clientesPorId = async (id) => {
 }
 
 const InfoClientesPorId = async (id) => {
-  console.log(id)
+  
   const query = `SELECT * FROM Clientes
     WHERE codCliente = ?`;
     const response = await connection.execute(query, [id]);
-    console.log(response)
 
   return response;
 }
