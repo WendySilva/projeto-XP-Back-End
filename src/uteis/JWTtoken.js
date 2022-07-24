@@ -18,7 +18,7 @@ const authenticateToken = async (token) => {
       const introspection = await jwt.verify(token, SECRET, jwtConfig);
       return introspection;
   } catch (e) {
-      const erro = { status: 401, message: 'Token expirado' };
+      const erro = { status: 401, message: 'Token expirado ou inválido' };
       throw erro;
   }
 }; 
