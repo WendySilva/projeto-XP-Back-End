@@ -4,7 +4,7 @@ const schema = Joi.object({
   email: Joi.string().email().required().messages({
     'any.required': 'Digite o e-mail',
   }),
-  senha: Joi.string().min(8).required().messages({
+  senha: Joi.number().min(8).required().messages({
     'any.required': 'Digite a Senha',
   }),
 });
