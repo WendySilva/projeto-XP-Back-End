@@ -2,6 +2,15 @@ CREATE DATABASE Investimentos;
 
 USE Investimentos;
 
+CREATE TABLE Investimentos.Usuarios (
+  codCliente INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(10) NOT NULL,
+  email VARCHAR(40) NOT NULL,
+  senha INT NOT NULL
+);
+
+ALTER TABLE Investimentos.Usuarios AUTO_INCREMENT=1;
+
 CREATE TABLE Investimentos.Clientes (
   codCliente INT AUTO_INCREMENT PRIMARY KEY,
   saldo DECIMAL(30,2) NOT NULL
@@ -35,6 +44,10 @@ CREATE TABLE Investimentos.Movimentacao (
 
 ALTER TABLE Investimentos.Movimentacao AUTO_INCREMENT=1;
 
+INSERT INTO Investimentos.Usuarios (nome, email, senha) VALUES 
+  ('Joana', 'joana@email.com', 12345678),
+  ('Joao', 'joao@email.com', 12345678),
+  ('Fernanda', 'fernanda@email.com', 12345678);
 
 INSERT INTO Investimentos.Clientes (saldo) VALUES 
   (100),
