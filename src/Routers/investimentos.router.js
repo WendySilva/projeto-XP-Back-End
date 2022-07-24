@@ -4,6 +4,7 @@ const investimentoController = require('../controllers/investimentos.controller'
 const middlewareCodCliente = require('../middlewares/clienteExistente.middleware');
 const middlewareQtdeAtivo = require('../middlewares/qtdeAtivo.middleware');
 const middlewareToken = require('../middlewares/token.middleware');
+require('express-async-errors');
 
 const investimentosRouter = express.Router();
 

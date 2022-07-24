@@ -4,6 +4,7 @@ const contaController = require('../controllers/conta.controller');
 const middlewareConta = require('../middlewares/conta.Joi');
 const middlewareCodCliente = require('../middlewares/clienteExistente.middleware');
 const middlewareToken = require('../middlewares/token.middleware');
+require('express-async-errors');
 
 const contaRouter = express.Router();
 

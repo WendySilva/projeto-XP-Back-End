@@ -12,7 +12,7 @@
 
 ## Tecnologias usadas
 
-  > Desenvolvido usando: NodeJS, ExpressJS, MYSQL, JavaScript , Joi.
+  > Desenvolvido usando: NodeJS, ExpressJS, MYSQL, JavaScript , Joi, JWT.
 
 ## Instalando Dependências
 
