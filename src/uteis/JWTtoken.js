@@ -1,29 +1,33 @@
 const jwt = require('jsonwebtoken');
-
+const jwt_decode = require('jwt-decode');
 const SECRET = process.env.JWT_SECRET;
 const jwtConfig = {
   expiresIn: '6000000m',
   algorithm: 'HS256',
 };
 
-const generateJWTToken = (payload) => jwt.sign(payload, SECRET, jwtConfig);
+const geradorJWTToken = (payload) => jwt.sign(payload, SECRET, jwtConfig);
 
-const authenticateToken = async (token) => {
+const autenticandoToken = (token) => {
   if (!token) {
     const erro = { status: 401, message: 'Token não encontrado' };
     throw erro;
   }
 
   try {
-      const introspection = await jwt.verify(token, SECRET, jwtConfig);
-      return introspection;
+      const verificando = jwt.verify(token, SECRET, jwtConfig);
+      return verificando;
   } catch (e) {
       const erro = { status: 401, message: 'Token expirado ou inválido' };
       throw erro;
   }
 }; 
 
+const tokenUsuario = (payload) => jwt_decode(payload);
+
+
 module.exports = {
-  generateJWTToken,
-  authenticateToken,
+  geradorJWTToken,
+  autenticandoToken,
+  tokenUsuario,
 };
