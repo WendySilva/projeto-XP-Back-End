@@ -9,6 +9,8 @@ Para ter acesso aos arquivos será necessário acessa a branch master desse proj
 ```
 cd git clone git@github.com:WendySilva/projeto-XP-Back-End.git
 
+git checkout master
+
 ```
 
 ---
