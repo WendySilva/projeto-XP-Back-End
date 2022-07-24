@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const schema = Joi.object({
-  email: Joi.email().required().messages({
+  email: Joi.string().email().required().messages({
     'any.required': 'Digite o e-mail',
   }),
   senha: Joi.string().min(8).required().messages({
