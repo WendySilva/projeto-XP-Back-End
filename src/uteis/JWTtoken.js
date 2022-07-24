@@ -10,7 +10,7 @@ const generateJWTToken = (payload) => jwt.sign(payload, SECRET, jwtConfig);
 
 const authenticateToken = async (token) => {
   if (!token) {
-    const erro = { status: 401, message: 'Token not found' };
+    const erro = { status: 401, message: 'Token não encontrado' };
     throw erro;
   }
 
@@ -18,7 +18,7 @@ const authenticateToken = async (token) => {
       const introspection = await jwt.verify(token, SECRET, jwtConfig);
       return introspection;
   } catch (e) {
-      const erro = { status: 401, message: 'Expired or invalid token' };
+      const erro = { status: 401, message: 'Token expirado' };
       throw erro;
   }
 }; 
